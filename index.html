@@ -1,14 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Post-it App</title>
-  <link rel="stylesheet" href="styles post-it.css">
+  <link rel="stylesheet" href="styles_post-it.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #post-it-container {
+      margin-bottom: 20px;
+    }
+
+    #new-post-it {
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    #new-post-it:focus {
+      outline: none;
+      border-color: #3498db;
+    }
+
+    #add-button {
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #post-its {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .post-it {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 10px;
+      padding: 15px;
+      width: 200px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .post-it p {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .post-it button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  </style>
 </head>
 <body>
   <h1>Post-it App</h1>
   <div id="post-it-container">
     <input type="text" id="new-post-it" placeholder="Nouveau post-it">
-    <button onclick="ajouterPostIt()">Ajouter</button>
+    <button id="add-button" onclick="ajouterPostIt()">Ajouter</button>
   </div>
   <div id="post-its"></div>
 
@@ -21,6 +99,7 @@
       if (text.trim() !== "") {
         const postIt = document.createElement("div");
         postIt.classList.add("post-it");
+        postIt.style.backgroundColor = getRandomColor();
         postIt.innerHTML = `
           <p>${text}</p>
           <button onclick="supprimerPostIt(this)">Supprimer</button>
@@ -38,6 +117,12 @@
         postItContainer.removeChild(button.parentElement);
       }
     }
+
+    function getRandomColor() {
+      const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#34495e', '#16a085', '#c0392b', '#1abc9c', '#e67e22'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
   </script>
 </body>
 </html>
+
