@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,11 @@
       margin: 0;
       padding: 20px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     h1 {
@@ -80,9 +86,18 @@
       font-size: 12px;
       padding: 5px 10px;
     }
+
+    #lottie-container {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
+
 <body>
+
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+  <dotlottie-player src="https://lottie.host/a6760611-289a-4384-811d-f0bdefca4500/DqVYyG09CR.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>
   <h1>Post-it App</h1>
   <div id="post-it-container">
     <input type="text" id="new-post-it" placeholder="Nouveau post-it">
@@ -124,5 +139,6 @@
     }
   </script>
 </body>
+
 </html>
 
