@@ -2,10 +2,14 @@
 <html lang="en">
 
 <head>
+  <!-- Meta tags for character set and viewport settings -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title of the page -->
   <title>Post-it App</title>
+  <!-- Link to external CSS file for styles -->
   <link rel="stylesheet" href="styles_post-it.css">
+  <!-- Internal styles for the page -->
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -49,6 +53,10 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
+    }
+
+    #add-button:hover {
+      background-color: #2980b9;
     }
 
     #post-its {
@@ -95,44 +103,68 @@
 
 <body>
 
+  <!-- External JavaScript library for Lottie animations -->
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
+  <!-- Lottie animation for visual appeal -->
   <dotlottie-player src="https://lottie.host/a6760611-289a-4384-811d-f0bdefca4500/DqVYyG09CR.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>
+  <!-- Heading for the Post-it App -->
   <h1>Post-it App</h1>
+  <!-- Container for new Post-it input and Add button -->
   <div id="post-it-container">
     <input type="text" id="new-post-it" placeholder="Nouveau post-it">
     <button id="add-button" onclick="ajouterPostIt()">Ajouter</button>
   </div>
+  <!-- Container to display Post-its -->
   <div id="post-its"></div>
 
+  <!-- JavaScript script for dynamic functionality -->
   <script>
+    // Array to store Post-it elements
     const postIts = [];
+    // Reference to the Post-its container
     const postItContainer = document.getElementById("post-its");
 
+    // Function to add a new Post-it
     function ajouterPostIt() {
+      // Retrieve the text from the input
       const text = document.getElementById("new-post-it").value;
+      // Check if the text is not empty
       if (text.trim() !== "") {
+        // Create a new Post-it element
         const postIt = document.createElement("div");
+        // Add a class for styling
         postIt.classList.add("post-it");
+        // Set background color to a random color
         postIt.style.backgroundColor = getRandomColor();
+        // Set HTML content for the Post-it
         postIt.innerHTML = `
           <p>${text}</p>
           <button onclick="supprimerPostIt(this)">Supprimer</button>
         `;
+        // Add the new Post-it to the array
         postIts.push(postIt);
+        // Append the new Post-it to the container
         postItContainer.appendChild(postIt);
+        // Clear the input field
         document.getElementById("new-post-it").value = "";
       }
     }
 
+    // Function to delete a Post-it
     function supprimerPostIt(button) {
+      // Find the index of the Post-it in the array
       const postItIndex = postIts.indexOf(button.parentElement);
+      // Check if the Post-it is found
       if (postItIndex !== -1) {
+        // Remove the Post-it from the array
         postIts.splice(postItIndex, 1);
+        // Remove the Post-it from the container
         postItContainer.removeChild(button.parentElement);
       }
     }
 
+    // Function to get a random color from an array of colors
     function getRandomColor() {
       const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#34495e', '#16a085', '#c0392b', '#1abc9c', '#e67e22'];
       return colors[Math.floor(Math.random() * colors.length)];
@@ -141,4 +173,3 @@
 </body>
 
 </html>
-
